@@ -9,8 +9,9 @@ This system allows medical professionals to upload hospital Standard Operating P
 ## ✨ Key Features
 
 - **100% Local Execution:** No healthcare data ever leaves the local machine. Embeddings, vector storage, and LLM inference happen entirely on-device.
+- **Conversational Memory:** The AI remembers context from previous messages during a session, allowing for natural follow-up questions using `langchain_classic` history-aware retrievers.
 - **Hallucination Resistance:** Built with strict LangChain prompt engineering to ensure the AI only answers based on the uploaded SOPs. If the answer is not in the documents, the AI explicitly states it cannot find the information.
-- **Premium User Interface:** A minimalist, highly professional Next.js frontend built with React, Tailwind CSS, Framer Motion, and `shadcn/ui`. Uses a universally trusted Royal Blue color palette.
+- **Premium User Interface:** A minimalist, highly professional Next.js frontend built with React, Tailwind CSS, Framer Motion, and `shadcn/ui`. Uses `@tailwindcss/typography` for beautiful Markdown rendering.
 - **Smart Document Processing:** Intelligent PDF parsing using `PyMuPDFLoader` and context-aware chunking to preserve paragraph structure.
 
 ---
@@ -80,7 +81,8 @@ ollama run llama3.2
 **Terminal 2: Start the FastAPI Backend**
 ```bash
 cd backend
-python -m uvicorn app.main:app --reload --port 8000
+# Use the virtual environment Python directly to bypass Windows execution policies:
+.\venv\Scripts\python.exe -m uvicorn app.main:app --reload --port 8000
 ```
 *Backend API will be available at `http://localhost:8000`*
 
